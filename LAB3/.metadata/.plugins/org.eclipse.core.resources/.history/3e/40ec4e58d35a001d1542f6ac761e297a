@@ -1,0 +1,42 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HP
+ */
+
+#include"fsm_manual.h"
+int value = 1;
+void fsm_manual_run() {
+	switch (status) {
+	case MANUAL_INIT:
+		switch (mode) {
+		case 1:
+			status = INIT;
+			break;
+		case 2:
+			status = MODE2;
+			break;
+		case 3:
+			status = MODE3;
+			break;
+		case 4:
+			status = MODE4;
+			break;
+		default:
+			break;
+		}
+		break;
+	case MODE2:
+		if ()
+		break;
+	case MODE3:
+		break;
+	case MODE4:
+		break;
+	default:
+		break;
+	}
+
+}
+

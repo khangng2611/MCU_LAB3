@@ -1,0 +1,4 @@
+../Core/Src/led_display.c:9:6:display7SEG	16	static
+../Core/Src/led_display.c:104:6:display7SEG1	16	static
+../Core/Src/led_display.c:199:6:display7SEGM	16	static
+../Core/Src/led_display.c:240:6:display_trafficlight	16	static

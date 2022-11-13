@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ex1/Core/Src/fsm_automation.c&apos; to &apos;fsm_automatic.c&apos;" description="Rename resource &apos;fsm_automation.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/fsm_automation.c" name="fsm_automatic.c" stamp="1667453401461" updateReferences="true"/>
+</session>

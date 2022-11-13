@@ -1,0 +1,86 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HP
+ */
+
+#include"fsm_manual.h"
+#include"led_display.h"
+#include"input_reading.h"
+
+int value = 1;
+void fsm_manual_run() {
+	switch (status) {
+	case MANUAL_INIT:
+		switch (mode) {
+			case 1:
+				status = MODE1;
+				break;
+			case 2:
+				status = MODE2;
+				break;
+			case 3:
+				status = MODE3;
+				break;
+			case 4:
+				status = MODE4;
+				break;
+			default:
+				break;
+		}
+		break;
+	case MODE1:
+		red_time = 5;
+		green_time = 3;
+		yellow_time = 2;
+		break;
+	case MODE2:
+		if (is_button_pressed(1) || is_button_pressed_1s(1)) {
+			value = (value >= 99) ? 1 : value+1;
+			display7SEG(value%10);
+			display7SEG1(value/10);
+		}
+		if (is_button_pressed(2) || is_button_pressed_1s(2)) {
+			red_time = value;
+			green_time = value - 2;
+			yellow_time = 2;
+			value = 1;
+			status = RED_GREEN;
+			setTimer1(green_time);
+		}
+		break;
+	case MODE3:
+		if (is_button_pressed(1) || is_button_pressed_1s(1)) {
+			value = (value >= 99) ? 1 : value+1;
+			display7SEG(value%10);
+			display7SEG1(value/10);
+		}
+		if (is_button_pressed(2) || is_button_pressed_1s(2)) {
+			yellow_time = value;
+			green_time = value + 3;
+			red_time = value*2 + 3;
+			value = 1;
+			status = INIT;
+		}
+		break;
+	case MODE4:
+		if (is_button_pressed(1) || is_button_pressed_1s(1)) {
+			value = (value >= 99) ? 1 : value+1;
+			display7SEG(value%10);
+			display7SEG1(value/10);
+		}
+		if (is_button_pressed(2) || is_button_pressed_1s(2)) {
+			green_time = value;
+			red_time = value + 2;
+			yellow_time = 2;
+			value = 1;
+			status = INIT;
+		}
+		break;
+	default:
+		break;
+	}
+
+}
+

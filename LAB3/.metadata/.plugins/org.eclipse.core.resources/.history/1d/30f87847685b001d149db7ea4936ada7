@@ -1,0 +1,66 @@
+/*
+ * fsm_manual.c
+ *
+ *  Created on: Nov 2, 2022
+ *      Author: HP
+ */
+
+#include"fsm_manual.h"
+
+void fsm_manual_run() {
+	switch (status) {
+	case MANUAL_INIT:
+		switch (mode) {
+			case 1:
+				status = MODE1;
+				break;
+			case 2:
+				status = MODE2;
+				break;
+			case 3:
+				status = MODE3;
+				break;
+			case 4:
+				status = MODE4;
+				break;
+			default:
+				break;
+		}
+		break;
+	case MODE1:
+		red_time = 5;
+		green_time = 3;
+		yellow_time = 2;
+		status = AUTO_RED_GREEN;
+		setTimer1(green_time*1000);
+		break;
+	case MODE2:
+		red_time = value;
+		green_time = (red_time > 2)? red_time - 2 : 1;
+		yellow_time = 2;
+		value = 1;
+		status = AUTO_RED_GREEN;
+		setTimer1(green_time*1000);
+		break;
+	case MODE3:
+		yellow_time = value;
+		green_time = value + 3;
+		red_time = value*2 + 3;
+		value = 1;
+		status = AUTO_YELLOW_RED;
+		setTimer1(yellow_time*1000);
+		break;
+	case MODE4:
+		green_time = value;
+		red_time = value + 2;
+		yellow_time = 2;
+		value = 1;
+		status = AUTO_GREEN_RED;
+		setTimer1(green_time*1000);
+		break;
+	default:
+		break;
+	}
+
+}
+
